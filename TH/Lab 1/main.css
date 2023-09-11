@@ -37,3 +37,11 @@ th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+label {
+  display: block;
+}
+.wrapper {
+  display: flex;
+  gap: 20px;
+}
