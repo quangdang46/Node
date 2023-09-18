@@ -2,25 +2,13 @@ var http = require("http"),
   fs = require("fs"),
   url = require("url");
 
-function serveStaticFile(res, path, contentType, responseCode) {
-  if (!responseCode) responseCode = 200;
-  fs.readFile(__dirname + path, function (err, data) {
-    if (err) {
-      res.writeHead(500, { "Content-Type": "text/plain" });
-      res.end("500 - Internal Error");
-    } else {
-      res.writeHead(responseCode, { "Content-Type": contentType });
-      res.end(data);
-    }
-  });
-}
-
 http
   .createServer(function (req, res) {
     var path = url.parse(req.url).pathname.replace(/\/$/, "").toLowerCase();
     switch (path) {
       case "":
-        serveStaticFile(res, "/ex1.html", "text/html");
+        res.writeHead(200, { "Content-Type": "text/html" });
+        res.end(fs.readFileSync(__dirname + "/ex1.html", "utf-8"));
         break;
       case "/result":
         const { query } = url.parse(req.url, true);
@@ -49,6 +37,7 @@ http
 
         res.writeHead(200, { "Content-Type": "text/html" });
         res.end(`<h1>${query.a} ${query.op} ${query.b} = ${result}</h1>`);
+        break;
       default:
         res.writeHead(404, { "Content-Type": "text/plain" });
         res.end("Duong dan khong ton tai");
