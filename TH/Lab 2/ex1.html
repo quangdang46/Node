@@ -6,23 +6,26 @@
     <title>Document</title>
   </head>
   <body>
-    <form action="">
+    <form action="/result" autocomplete="off">
       <div class="">
-        <label for="">So 1</label>
-        <input type="text" placeholder="so 1" />
+        <label for="">Số hạng 1 </label>
+        <input type="text" placeholder="so 1" name="a" />
       </div>
       <div class="">
-        <label for="">so 2</label>
-        <input type="text" placeholder="so 1" />
+        <label for="">Số hạng 2 </label>
+        <input type="text" placeholder="so 2" name="b"/>
       </div>
       <div class="">
-        <label for="">phep dau</label>
-        <select name="" id="">
-          <option value="">1</option>
-          <option value="">1</option>
+        <label for="">Phép tính </label>
+        <select name="op" id="">
+          <option value="">Chọn phép tính</option>
+          <option value="+">+</option>
+          <option value="-">-</option>
+          <option value="*">*</option>
+          <option value="/">/</option>
         </select>
       </div>
-      <button>tinh</button>
+      <button type="submit">Tính</button>
     </form>
   </body>
 </html>
