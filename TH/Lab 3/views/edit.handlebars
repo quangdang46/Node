@@ -1,0 +1,19 @@
+<a href="/" class="text-primary ">Quay lai</a>
+<h2 class="text-success">Sua thong tin san pham</h2>
+<form action="/edit" method="post" autocomplete="off">
+    <input type="hidden" name="id" value="{{encryptedId}}" />
+    <div class="form-group">
+        <label for="name"></label>
+        <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" value="{{name}}" />
+    </div>
+    <div class="form-group">
+        <label for="price">Price</label>
+        <input type="text" class="form-control" id="price" placeholder="Enter price" name="price" value="{{price}}" />
+    </div>
+    {{#if error}}
+    <div class="alert alert-warning" role="alert">
+        {{error}}
+    </div>
+    {{/if}}
+    <button type="submit" class="btn btn-success ">Sua san pham</button>
+</form>

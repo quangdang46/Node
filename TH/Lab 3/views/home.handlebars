@@ -1,0 +1,26 @@
+<h1 class="text-primary">Danh sach san pham</h1>
+<a href="/add" class="btn btn-success">Them san pham</a>
+<p>Chon 1 san pham cu the de xem chi tiet</p>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Ten san pham</th>
+      <th>Gia</th>
+      <th>Thao tac</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each products}}
+    <tr>
+      <td>{{@index}}</td>
+      <td>{{this.name}}</td>
+      <td>{{this.price}}</td>
+      <td>
+        <a href="/edit/{{this.id}}" class="btn btn-primary">Sua</a>
+        <a href="/delete/{{this.id}}" class="btn btn-danger">Xoa</a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
