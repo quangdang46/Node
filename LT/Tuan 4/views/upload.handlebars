@@ -1,0 +1,9 @@
+<form action="/upload-images" enctype="multipart/form-data" method="post">
+  <input type="file" multiple accept="image/*" required name="photo" />
+  <button type="submit">Upload file</button>
+</form>
+{{#if result}}
+  {{#each result}}
+    <p>{{this.name}} - {{this.status}}</p>
+  {{/each}}
+{{/if}}
