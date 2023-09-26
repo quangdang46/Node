@@ -18,6 +18,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
+  // create folder public/images
+  if (!fs.existsSync("./public/images")) {
+    fs.mkdirSync("./public/images");
+  }
   const files = fs.readdirSync("./public/images");
   res.render("home", { files });
 });
