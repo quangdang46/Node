@@ -1,0 +1,12 @@
+<form action="/tinhtoan1" method="post">
+    a: <input type="text" name="a"></br>
+    b: <input type="text" name="b"></br>
+    op: <label for="+"><input type="radio" name="op" id="+" value="+"> +</label>
+    <label for="-"><input type="radio" name="op" id="-" value="-"> -</label>
+    <label for="*"><input type="radio" name="op" id="*" value="*"> *</label>
+    <label for="/"><input type="radio" name="op" id="/" value="/"> /</label></br>
+    <button type="submit">Submit</button>
+    {{#if result}}
+    <h1>Result: {{result}}</h1>
+    {{/if}}
+</form>
