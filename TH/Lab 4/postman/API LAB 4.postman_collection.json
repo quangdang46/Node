@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "f7c25cb9-ea4a-4f43-929d-ca174d74d9ea",
+		"name": "API LAB 4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22762710"
+	},
+	"item": [
+		{
+			"name": "GET DETAIL",
+			"item": [
+				{
+					"name": "DETAIL USER",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GET ALL",
+			"item": [
+				{
+					"name": "GET ALL USER",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL USER BY PAGE",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ADD USER",
+			"item": [
+				{
+					"name": "ADD NEW USER",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UPDATE USER",
+			"item": [
+				{
+					"name": "UPDATE USER",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Update user\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/edit/5263195",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"edit",
+								"5263195"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DELETE USER",
+			"item": [
+				{
+					"name": "DELETE USER",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

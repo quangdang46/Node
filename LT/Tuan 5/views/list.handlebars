@@ -1,0 +1,22 @@
+<table id="customers">
+  <tr>
+    <th>Name</th>
+    <th>Sex</th>
+    <th>Age</th>
+    <th>Address</th>
+    <th>Favourite</th>
+  </tr>
+{{#each listStudent}}
+<tr>
+    <td>{{this.name}}</td>
+    <td>{{this.sex}}</td>
+    <td>{{this.age}}</td>
+    <td>{{this.address}}</td>
+    <td>
+        {{#each this.favourite}}
+        {{this}}{{#unless @last}}, {{/unless}}
+        {{/each}}
+    </td>
+</tr>
+{{/each}}
+</table>
