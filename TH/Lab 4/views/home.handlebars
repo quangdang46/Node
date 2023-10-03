@@ -1,0 +1,24 @@
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Gender</th>
+    <th>Stutus</th>
+
+  </tr>
+
+  {{#each users}}
+  <tr>
+    <td>
+        <a href="http://localhost:3000/detail/{{this.id}}">{{this.id}}</a>
+    </td>
+    <td>{{this.name}}</td>
+    <td>{{this.email}}</td>
+    <td>{{this.gender}}</td>
+    <td>{{this.status}}</td>
+
+  
+  </tr>
+{{/each}}  
+</table>

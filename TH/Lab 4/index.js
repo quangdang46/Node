@@ -1,7 +1,8 @@
 require("dotenv").config();
-
+const fetch = require("node-fetch");
 const express = require("express");
 const bodyParser = require("body-parser");
+const ehbs = require("express-handlebars");
 const app = express();
 
 const PORT = process.env.PORT || 8080;
@@ -11,15 +12,26 @@ const TOKEN = process.env.TOKEN;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.engine(
+  "handlebars",
+  ehbs.engine({
+    defaultLayout: "main",
+  })
+);
+app.set("view engine", "handlebars");
+
+let users = [];
+
 app.get("/", (req, res) => {
   const page = req.query.page || 1;
-  const url = `${URL}/public-api/users?page=${page}`;
+  const url = `${URL}/public-api/users?per_page=20&page=${page}`;
 
   fetch(url)
     .then((response) => response.json())
     .then((_res) => {
-      res.json(_res);
+      users = _res.data;
     });
+  res.render("home", { users });
 });
 
 app.get("/detail/:id", (req, res) => {
