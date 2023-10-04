@@ -5,12 +5,10 @@ const ehbs = require("express-handlebars");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const cors = require("cors");
 
 const Student = require("./models/student.model");
 
 const app = express();
-app.use(cors());
 
 const uri = `mongodb+srv://tranquangdang21:${PASS}@cluster0.oobfvcm.mongodb.net/?retryWrites=true&w=majority`;
 
@@ -46,11 +44,15 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.get("/", (req, res) => {
+  res.redirect("/list");
+});
+
 app.get("/list", async (req, res) => {
   const listStudent = await Student.find();
-  console.log(listStudent);
+  const students = listStudent.map((student) => student.toObject());
   res.render("list", {
-    listStudent,
+    students,
   });
 });
 
@@ -61,6 +63,11 @@ app.get("/add", (req, res) => {
 app.post("/add", async (req, res) => {
   const student = new Student(req.body);
   await student.save();
+  req.session.flash = {
+    type: "success",
+    intro: "Success!",
+    message: "Add student successfully",
+  };
   res.redirect("/list");
 });
 
