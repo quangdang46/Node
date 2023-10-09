@@ -16,8 +16,9 @@ const hbs = ehbs.create({
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
-app.get("/", (req, res) => {
-  res.render("index");
+app.post("/", (req, res) => {
+  //   res.render("index");
+  res.json(req.data);
 });
 
 app.listen(8080, () => {
