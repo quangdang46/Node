@@ -27,64 +27,24 @@
         </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td><a href="#">Phạm Quốc Cường</a></td>
-                <td>Nam</td>
-                <td>30</td>
-                <td>vinh@gmail.com</td>
-                <td>
-                    <button class="btn btn-sm btn-outline-primary">Chỉnh sửa</button>
-                    <button class="btn btn-sm btn-outline-danger">Xóa</button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td><a href="#">Nguyễn Xuân Vinh</a></td>
-                <td>Nam</td>
-                <td>30</td>
-                <td>vinh@gmail.com</td>
-                <td>
-                    <button class="btn btn-sm btn-outline-primary">Chỉnh sửa</button>
-                    <button class="btn btn-sm btn-outline-danger">Xóa</button>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td><a href="#">Phan Thị Thu Thảo</a></td>
-                <td>Nữ</td>
-                <td>26</td>
-                <td>thao@gmail.com</td>
-                <td>
-                    <button class="btn btn-sm btn-outline-primary">Chỉnh sửa</button>
-                    <button class="btn btn-sm btn-outline-danger">Xóa</button>
-                </td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td><a href="#">Trần Minh Trí</a></td>
-                <td>Nam</td>
-                <td>27</td>
-                <td>tri@gmail.com</td>
-                <td>
-                    <button class="btn btn-sm btn-outline-primary">Chỉnh sửa</button>
-                    <button class="btn btn-sm btn-outline-danger">Xóa</button>
-                </td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td><a href="#">Nguyễn Quỳnh Trang</a></td>
-                <td>Nữ</td>
-                <td>32</td>
-                <td>trang@gmail.com</td>
-                <td>
-                    <button class="btn btn-sm btn-outline-primary">Chỉnh sửa</button>
-                    <button class="btn btn-sm btn-outline-danger">Xóa</button>
-                </td>
-            </tr>
+  
+            {{#each students}}
+        <tr>
+            <td>{{@index}}</td>
+            <td><a href="/profile/{{this.id}}">{{this.fullName}}</a></td>
+            <td>{{this.gender}}</td>
+            <td>{{this.age}}</td>
+            <td>{{this.email}}</td>
+            <td>
+                <button class="btn btn-sm btn-outline-primary">Chỉnh sửa</button>
+                <button class="btn btn-sm btn-outline-danger">Xóa</button>
+            </td>
+        </tr>
+            {{/each}}
+            
         </tbody>
     </table>
-    <p>Tổng số người dùng: <strong class="text-danger">5</strong></p>
+    <p>Tổng số người dùng: <strong class="text-danger">{{getLength students}}</strong></p>
 </div>
 
 <div id="flash-alert" class="alert alert-success text-center w-25 mx-auto my-3">

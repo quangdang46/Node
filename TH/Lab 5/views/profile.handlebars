@@ -27,14 +27,16 @@
                     <img class="card-img-top" src="https://www.w3schools.com/bootstrap4/img_avatar1.png"
                         alt="Card image">
                     <div class="card-body">
-                        <h4 class="card-title text-primary">Trần Minh Trí</h4>
-                        <p class="card-text">Giới tính: <strong>Nam</strong></p>
-                        <p class="card-text">Tuổi: <strong>27</strong></p>
-                        <p class="card-text">Email: <strong>tri@gmail.com</strong></p>
+                        {{#with student}}
+                        <h4 class="card-title text-primary">{{fullName}}</h4>
+                        <p class="card-text">Giới tính: <strong>{{gender}}</strong></p>
+                        <p class="card-text">Tuổi: <strong>{{age}}</strong></p>
+                        <p class="card-text">Email: <strong>{{email}}</strong></p>
                         <a href="#" class="btn btn-primary">Liên hệ</a>
+                        {{/with}}
                     </div>
                 </div>
-                <p class="mt-3"><a href="#" >Quay lại</a></p>
+                <p class="mt-3"><a href="/" >Quay lại</a></p>
             </div>
         </div>
     </div>

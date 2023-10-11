@@ -49,7 +49,7 @@ app.use(
 const checkLogin = (req, res, next) => {
   if (!req.session.user) {
     res.redirect("/login");
-  }else{
+  } else {
     res.redirect("/");
   }
   next();
@@ -58,13 +58,12 @@ const checkLogin = (req, res, next) => {
 // routes
 
 app.get("/", (req, res) => {
-  console.log(req.session.user);
   res.render("home");
 });
 
-app.get("/login", checkLogin, (req, res) => {
-  res.render("login");
-});
+// app.get("/login", checkLogin, (req, res) => {
+//   res.render("login");
+// });
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -78,8 +77,8 @@ app.post("/login", async (req, res) => {
   }
 });
 
-app.get("/uploads", checkLogin, async (req, res) => {
-  res.render("uploads");
+app.get("/uploads", async (req, res) => {
+  res.render("uploads"); 
 });
 
 app.listen(8080, () => {
