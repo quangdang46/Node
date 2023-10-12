@@ -4,8 +4,6 @@ const { Schema } = mongoose;
 const UserSchema = new Schema({
   email: String,
   password: String,
-  created_at: Date,
-  updated_at: Date,
   photos: [
     {
       type: Schema.Types.ObjectId,
@@ -17,16 +15,14 @@ const UserSchema = new Schema({
 const PhotoSchema = new Schema({
   name: String,
   url: String,
-  data: {
-    type: Buffer,
+  img: {
+    data: Buffer,
     contentType: String,
   },
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  created_at: Date,
-  updated_at: Date,
 });
 
 const User = mongoose.model("User", UserSchema);
