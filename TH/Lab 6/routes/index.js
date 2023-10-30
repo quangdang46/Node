@@ -3,6 +3,8 @@ const session = require("express-session");
 var router = express.Router();
 const connection = require("../models/connect");
 const bcrypt = require("bcrypt");
+const fs = require("fs");
+const path = require("path");
 
 router.use(
   session({
@@ -84,11 +86,101 @@ router.post("/register", async (req, res) => {
 });
 
 router.get("/", function (req, res, next) {
+  const items = [];
   if (req.session.loggedin) {
-    res.render("index");
+    const directoryPath = "./public/uploads";
+
+    fs.readdir(directoryPath, (err, files) => {
+      if (err) {
+        console.error(err);
+        return res
+          .status(500)
+          .send("An error occurred while reading the directory.");
+      }
+      files.forEach((file) => {
+        const filePath = path.join(directoryPath, file);
+
+        const stats = fs.statSync(filePath);
+        const modifiedDate = new Date(stats.mtime);
+
+        const item = {
+          name: file,
+          type: stats.isDirectory() ? "Folder" : "File",
+          size: stats.size,
+          modified: modifiedDate.toLocaleDateString("en-GB"),
+          isFolder: stats.isDirectory(),
+        };
+
+        items.push(item);
+      });
+
+      res.render("index", { items });
+    });
   } else {
     res.send("Please login to view this page!");
   }
+});
+
+router.post("/create", function (req, res, next) {
+  const { folderName, type } = req.body;
+  const directoryPath = "./public/uploads";
+  const filePath = path.join(directoryPath, folderName);
+
+  if (type === "folder") {
+    fs.mkdir(filePath, (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send("An error occurred while creating folder.");
+      }
+
+      res.send("Folder created successfully!");
+    });
+  } else {
+    fs.writeFile(filePath, "", (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send("An error occurred while creating file.");
+      }
+      res.send("File created successfully!");
+    });
+  }
+});
+
+router.get("/search", function (req, res, next) {
+  const { query } = req.query;
+  const directoryPath = "./public/uploads";
+
+  const results = [];
+
+  fs.readdir(directoryPath, (err, files) => {
+    if (err) {
+      console.error(err);
+      return res
+        .status(500)
+        .send("An error occurred while reading the directory.");
+    }
+
+    files.forEach((file) => {
+      if (file.includes(query)) {
+        const filePath = path.join(directoryPath, file);
+
+        const stats = fs.statSync(filePath);
+        const modifiedDate = new Date(stats.mtime);
+
+        const item = {
+          name: file,
+          type: stats.isDirectory() ? "Folder" : "File",
+          size: stats.size,
+          modified: modifiedDate.toLocaleDateString("en-GB"),
+          isFolder: stats.isDirectory(),
+        };
+
+        results.push(item);
+      }
+    });
+
+    res.send(results);
+  });
 });
 
 module.exports = router;

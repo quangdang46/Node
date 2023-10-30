@@ -33,14 +33,14 @@
         <span class="fa fa-search"></span>
       </span>
     </div>
-    <input type="text" class="form-control" placeholder="Search" />
+    <input type="text" placeholder="Enter name" class="input-search">
   </div>
   <div class="btn-group my-3">
-    <button type="button" class="btn btn-light border">
+    <button type="button" class="btn btn-light border btn-folder">
       <i class="fas fa-folder-plus"></i>
       New folder
     </button>
-    <button type="button" class="btn btn-light border">
+    <button type="button" class="btn btn-light border btn-file">
       <i class="fas fa-file"></i>
       Create text file
     </button>
@@ -55,91 +55,28 @@
         <th>Actions</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td>
-          <i class="fa fa-folder"></i>
-          <a href="#">Document</a>
-        </td>
-        <td>Folder</td>
-        <td>-</td>
-        <td>02-12-2019</td>
-        <td>
-          <button><i class="fa fa-download action"></i></button>
-          <button><i class="fa fa-edit action"></i></button>
-          <button><i class="fa fa-trash action"></i></button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <i class="fa fa-folder"></i>
-          <a href="#">Video</a>
-        </td>
-        <td>Folder</td>
-        <td>-</td>
-        <td>02-12-2019</td>
-        <td>
-          <button><i class="fa fa-download action"></i></button>
-          <button><i class="fa fa-edit action"></i></button>
-          <button><i class="fa fa-trash action"></i></button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <i class="fa fa-folder"></i>
-          <a href="#">Downloads</a>
-        </td>
-        <td>Folder</td>
-        <td>-</td>
-        <td>02-12-2019</td>
-        <td>
-          <button><i class="fa fa-download action"></i></button>
-          <button><i class="fa fa-edit action"></i></button>
-          <button><i class="fa fa-trash action"></i></button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <i class="fas fa-file-archive"></i>
-          <a href="#">fontawesome-free-5.15.1-web.zip</a>
-        </td>
-        <td>Compressed file</td>
-        <td>3.5 MB</td>
-        <td>02-07-2020</td>
-        <td>
-          <button><i class="fa fa-download action"></i></button>
-          <button><i class="fa fa-edit action"></i></button>
-          <button><i class="fa fa-trash action"></i></button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <i class="fas fa-file"></i>
-          <a href="#">Account.txt</a>
-        </td>
-        <td>Text Document</td>
-        <td>18 KB</td>
-        <td>11-02-2020</td>
-        <td>
-          <button><i class="fa fa-download action"></i></button>
-          <button><i class="fa fa-edit action"></i></button>
-          <button><i class="fa fa-trash action"></i></button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <i class="fas fa-file-image"></i>
-          <a href="#">img101.png</a>
-        </td>
-        <td>JPG Image</td>
-        <td>2.2 MB</td>
-        <td>11-02-2020</td>
-        <td>
-          <button><i class="fa fa-download action"></i></button>
-          <button><i class="fa fa-edit action"></i></button>
-          <button><i class="fa fa-trash action"></i></button>
-        </td>
-      </tr>
+    <tbody class="table-list">
+      {{#each items}}
+        <tr>
+          <td>
+            {{#if isFolder}}
+              <i class="fa fa-folder"></i>
+            {{else}}
+              <i class="fa fa-file"></i>
+            {{/if}}
+            <a href="#">{{name}}</a>
+          </td>
+          <td>{{type}}</td>
+          <td>{{size}}</td>
+          <td>{{modified}}</td>
+          <td>
+            <button><i class="fa fa-download action"></i></button>
+            <button><i class="fa fa-edit action"></i></button>
+            <button><i class="fa fa-trash action"></i></button>
+          </td>
+        </tr>
+      {{/each}}
+
     </tbody>
   </table>
   <div class="border rounded mb-3 mt-5 p-3">
